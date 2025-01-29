@@ -1,6 +1,7 @@
 - name: Ping module
-  hosts: local #which hosts your ansible wants to connect
+  hosts: local # Specify the hosts Ansible should connect to
+  gather_facts: no  # Skipping gathering facts for faster execution
   tasks: #list of tasks/modules/collections
-  - name: Test ping module
-    ansible.builtin.ping:
+  - name: Testing connectivity using the ping module
+    ansible.builtin.ping: # Using the built-in ping module
   
