@@ -16,3 +16,12 @@
 # Commands to execute:
 # ansible-playbook -i inventory.ini 10-vars-preference.yaml -e "variable='This is variable from command line'"
 # Inventory file (inventory.ini):
+
+# Order of preference is below:
+# 1. Command line
+# 2. Task Level
+# 3. Var Files 
+# 4. Prompt
+# 5. Playbook
+# 6. Inventory
+# 7. Role
