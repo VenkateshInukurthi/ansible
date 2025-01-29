@@ -12,7 +12,7 @@
         msg: "This is from play 01 task 02"
 
 - name: PLAY - 02
-  hosts: local
+  hosts: web
   gather_facts: no
   tasks:
     - name: Play-02 Task-01
