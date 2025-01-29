@@ -1,0 +1,18 @@
+- name: Print variable in order of preference
+  hosts: web
+  vars:
+    source_of_var: "This is var1 from playbook"
+  tasks:
+    - name: Print variable from inventory
+      debug:
+        msg: "variable from inventory: {{ source_of_var }}"
+    - name: Print variable from playbook
+      debug:
+        msg: "variable from playbook: {{ source_of_var }}"
+    - name: Print variable from command line
+      debug:
+        msg: "variable from command line: {{ source_of_var }}"
+
+# Commands to execute:
+# ansible-playbook -i inventory.ini 10-vars-preference.yaml -e "variable='This is variable from command line'"
+# Inventory file (inventory.ini):
