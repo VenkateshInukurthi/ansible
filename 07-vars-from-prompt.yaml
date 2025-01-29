@@ -1,4 +1,9 @@
 # Print variables from prompt
+# Please enter the course name: DevOps
+# Enter the course duration in number of hours: 150
+# Enter the details from where you learned this course: Join DevOps
+# Enter source from where this variable is printing from: Prompt
+
 - name: Printing variables from prompt
   hosts: web
   vars_prompt:
