@@ -1,0 +1,8 @@
+# command to pass arguments:
+# ansible-playbook -i inventory.ini -e ansible_user=ec2-user -e ansible_password=DevOps321 09-vars-from-args.yaml -e "Course=Ansible Trainer=Kamal Duration=10 Var_Source=Arguments"
+- name: Playbook to take variables from arguments
+  hosts: web
+  tasks:
+    - name: Print the variable
+      debug:
+        msg: "Hi, I am learning {{ Course }} from {{ Trainer }}, Course duration is {{ Duration }} Hours. Source of this data is {{ Var_Source}}"
