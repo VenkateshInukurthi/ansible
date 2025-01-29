@@ -1,0 +1,29 @@
+# Print variables from prompt
+- name: Printing variables from prompt
+  hosts: web
+  vars_prompt:
+    # Prompt for course name
+    - name: Course
+      prompt: Please enter the course name
+      private: false # This is to show the entered text on prompt
+
+    # Prompt for course duration
+    - name: Duration
+      prompt: Enter the course duration in number of hours
+      private: false
+
+    # Prompt for source of learning
+    - name: Learned_from
+      prompt: Enter the details from where you learned this course
+      private: false
+
+    # Prompt for variable source
+    - name: Variable_source
+      prompt: Enter source from where this variable is printing from
+      private: false
+
+  tasks:
+    # Task to print the variable information from prompt
+    - name: Print the variable information from prompt
+      ansible.builtin.debug:
+        msg: "Hi, I am learning {{ Course }} from {{ Learned_from }}, course duration is {{ Duration }} hours. This data is printing from {{ Variable_source }}"
