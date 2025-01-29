@@ -1,0 +1,9 @@
+# This is to print variables from files, vars.yaml added for testing
+- name: Print variables from files
+  hosts: web
+  vars_files:
+    - vars.yaml
+  tasks:
+    - name: Print the variables from files
+      ansible.builtin.debug:
+        msg: "Hi, I am learning {{ COURSE }} from {{ TRAINED_FROM }}, Course duration is {{ DURATION }} Hours"
