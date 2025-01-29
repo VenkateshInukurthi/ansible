@@ -1,0 +1,28 @@
+# Variables to print, Testing vbariables at the task level
+- name: Printing variables
+  hosts: web
+  vars:
+    COURSE: "DevOps with AWS"
+    DURATION: 120
+    TRAINED: "https://www.joindevops.com/"
+  tasks:
+    - name: Print the Information of this course without variables
+      ansible.builtin.debug:
+        msg: "Hi, I am Venkatesh. I am learning DevOps. Course duration is 120 HRS. Trained from JoinDevOps"
+
+    - name: Print the same information using variables
+      ansible.builtin.debug:
+        msg: "Hi, I am learning {{ COURSE }} from {{ TRAINED }}, Course duration is {{ DURATION }} Hours"
+
+
+    - name: Print the course details at the task level
+      vars:
+        COURSE: "Ansible"
+        DURATION: 10
+        TRAINED: "https://kodekloud.com/"
+      ansible.builtin.debug:
+        msg: "Hi, I am learing {{ COURSE }} from {{ TRAINED }}, Course duration is {{ DURATION }} Hours"
+
+    - name: Print the same information using variables
+      ansible.builtin.debug:
+        msg: "Hi, I am learning {{ COURSE }} from {{ TRAINED }}, Course duration is {{ DURATION }} Hours"
