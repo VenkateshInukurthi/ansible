@@ -1,24 +1,24 @@
-- name: Testing multiple plays
+# This play book is to test multiple plays in a single playbook
+- name: PLAY - 01
   hosts: local
   gather_facts: no
   tasks:
-  - name: Play-01 Task-01
-    ansible.builtin.debug: # Using debug module to display from which play the task is printing messages.
-      msg: "This is from play 01 and task 01"
+    - name: Play-01 Task-01
+      ansible.builtin.debug:  # Using debug module to display from which play the task is printing messages
+        msg: "This is from play 01 and task 01"
   
-  - name: Play-01 Task-02
-    ansible.builtin.debug:
-      msg: "This is from play 01 task 02"
+    - name: Play-01 Task-02
+      ansible.builtin.debug:
+        msg: "This is from play 01 task 02"
 
-
-- name : PLAY - 02
+- name: PLAY - 02
   hosts: local
   gather_facts: no
   tasks:
-  - name: Play-02 Task-01
-    ansible.builtin.debug:
-      msg: "This is from play 02 Taks 01"
+    - name: Play-02 Task-01
+      ansible.builtin.debug:
+        msg: "This is from play 02 Task 01"
 
-  - name: Play-02 Taks-02
-    ansible.builtin.debug:
-      msg: "This is from play 02 task 02"
+    - name: Play-02 Task-02
+      ansible.builtin.debug:
+        msg: "This is from play 02 task 02"
