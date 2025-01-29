@@ -1,14 +1,14 @@
-- name : Install Nginx using play book
-  hosts : web
-  become : yes
-  tasks :
-    - name : Install nginx
+- name: Install Nginx using playbook
+  hosts: web
+  become: yes
+  tasks:
+    - name: Install nginx
       ansible.builtin.dnf:
-       name : nginx
-       state : present
+        name: nginx
+        state: present
 
-    - name : Start nginx service
+    - name: Start nginx service
       ansible.builtin.service:
-        name : nginx
+        name: nginx
         state: restarted
-        enabled : yes
+        enabled: yes

@@ -1,0 +1,8 @@
+# Variables to print, We have use variables in ansible multiple ways. Some of the examples are below.
+- name: Printing variables
+  hosts: web
+  vars:
+  tasks:
+    - name: Print the Information of this course without variables
+      ansible.builtin.debug:
+        msg: "Hi, I am Venkatesh. I am learning DevOps. Course duration is 120 HRS. Trained from JoinDevOps"
