@@ -1,18 +1,60 @@
 # Testing the filters in Ansible
-- name: Demo on filters or functions in linux
+- name: Demo on filters or functions in Ansible
   hosts: local
   connection: local
   tasks:
-    - name: print the default variables
+    - name: Print the default variables
       ansible.builtin.debug:
         msg: "Hello, I am learning {{ Course | default('Ansible') }}"
+
     - name: Convert to upper case
       vars:
-        - Grretings: "Hello Venkatesh"
+        Greetings: "Hello Venkatesh"
       ansible.builtin.debug:
         msg: "{{ Greetings | upper }}"
-    - name: Convert to upper lower
+
+    - name: Convert to lower case
       vars:
-        - Grretings: "Hello Venkatesh"
+        Greetings: "Hello Venkatesh"
       ansible.builtin.debug:
         msg: "{{ Greetings | lower }}"
+
+    - name: Join a list of items
+      vars:
+        items: ["apple", "banana", "cherry"]
+      ansible.builtin.debug:
+        msg: "Fruits: {{ items | join(', ') }}"
+
+    - name: Get length of a list
+      vars:
+        items: ["apple", "banana", "cherry"]
+      ansible.builtin.debug:
+        msg: "Number of fruits: {{ items | length }}"
+
+    - name: Replace a string
+      vars:
+        text: "Hello Ansible"
+      ansible.builtin.debug:
+        msg: "{{ text | replace('Ansible', 'World') }}"
+
+    - name: Convert YAML to JSON
+      vars:
+        yaml_var: "{name: 'Venkatesh', role: 'Developer'}"
+      ansible.builtin.debug:
+        msg: "{{ yaml_var | from_yaml | to_json }}"
+
+    - name: Extract keys from a dictionary
+      vars:
+        my_dict:
+          name: "Venkatesh"
+          role: "Developer"
+      ansible.builtin.debug:
+        msg: "Keys: {{ my_dict | dict2items | map(attribute='key') | list }}"
+
+    - name: Extract values from a dictionary
+      vars:
+        my_dict:
+          name: "Venkatesh"
+          role: "Developer"
+      ansible.builtin.debug:
+        msg: "Values: {{ my_dict | dict2items | map(attribute='value') | list }}"
