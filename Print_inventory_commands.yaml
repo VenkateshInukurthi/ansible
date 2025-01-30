@@ -6,5 +6,3 @@
 #
 # ansible -i inventory.ini servers --list-hosts
 # 
-#
-#
