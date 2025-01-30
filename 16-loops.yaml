@@ -1,0 +1,14 @@
+# This playbook is to test the loops in Ansible
+- name: Ansible loops demo
+  hosts: web
+  connection: local
+  tasks:
+    - name: Print names in loop
+      ansible.builtin.debug:
+        msg: "Name is {{ item }}"
+      loop:
+        - Venkatesh
+        - Lavanya
+        - Jaishnav
+        - Vemaiah
+        - Varamma
