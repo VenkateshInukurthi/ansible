@@ -6,3 +6,56 @@
 #
 # ansible -i inventory.ini servers --list-hosts
 # 
+#Here are some additional Ansible commands you can use:
+#
+#- To check the status of hosts:
+#  ```bash
+#  ansible -i inventory.ini all -m ping
+#  ```
+#
+#- To run a command on all hosts:
+#  ```bash
+#  ansible -i inventory.ini all -a "uptime"
+#  ```
+#
+#- To use a specific user for the command:
+#  ```bash
+#  ansible -i inventory.ini all -a "uptime" -u username
+#  ```
+#
+#- To run a command with sudo privileges:
+#  ```bash
+#  ansible -i inventory.ini all -a "apt-get update" --become --ask-become-pass
+#  ```
+#
+#- To gather facts about all hosts:
+#  ```bash
+#  ansible -i inventory.ini all -m setup
+#  ```
+#
+#- To run a playbook:
+#  ```bash
+#  ansible-playbook -i inventory.ini playbook.yml
+#  ```
+#
+#- To limit the playbook run to specific hosts:
+#  ```bash
+#  ansible-playbook -i inventory.ini playbook.yml --limit web
+#  ```
+#
+#- To check the syntax of a playbook:
+#  ```bash
+#  ansible-playbook -i inventory.ini playbook.yml --syntax-check
+#  ```
+#
+#- To list all available tags in a playbook:
+#  ```bash
+#  ansible-playbook -i inventory.ini playbook.yml --list-tags
+#  ```
+#
+#- To run a playbook with a specific tag:
+#  ```bash
+#  ansible-playbook -i inventory.ini playbook.yml --tags "tag_name"
+#  ```
+#
+#These commands can help you manage and automate tasks on your servers using Ansible.
