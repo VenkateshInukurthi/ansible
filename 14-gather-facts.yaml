@@ -19,21 +19,20 @@
 
     - name: Print specific fact - Operating System
       ansible.builtin.debug:
-        #msg: "Operating System: {{ ansible_facts['ansible_distribution'] }} {{ ansible_facts['ansible_distribution_version'] }}"
-        msg: "Operating System: {{ ansible_facts['ansible_os_family'] }} " #{{ ansible_facts.ansible_distribution_version }}"
+        msg: "Operating System: {{ ansible_distribution }} {{ ansible_distribution_version }}"
 
     - name: Print specific fact - Hostname
       ansible.builtin.debug:
-        msg: "Hostname: {{ ansible_facts['ansible_hostname'] }}"
+        msg: "Hostname: {{ ansible_hostname }}"
 
     - name: Print specific fact - IP Address
       ansible.builtin.debug:
-        msg: "IP Address: {{ ansible_facts['ansible_default_ipv4']['address'] }}"
+        msg: "IP Address: {{ ansible_default_ipv4['address }}"
 
     - name: Print specific fact - Total Memory
       ansible.builtin.debug:
-        msg: "Total Memory: {{ ansible_facts['ansible_memtotal_mb'] }} MB"
+        msg: "Total Memory: {{ ansible_memtotal_mb }} MB"
 
     - name: Print specific fact - Number of CPUs
       ansible.builtin.debug:
-        msg: "Number of CPUs: {{ ansible_facts['ansible_processor_vcpus'] }}"
+        msg: "Number of CPUs: {{ ansible_processor_vcpus }}"
