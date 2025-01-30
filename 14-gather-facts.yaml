@@ -1,0 +1,8 @@
+# Playbook to demonestrate how gather facts works
+- name: Print gather facts variable
+  hosts: web
+  become: yes
+  tasks:
+    - name: print gather facts
+      ansible.builtin.debug:
+        msg: "{{ ansible_facts }}" # ansible_facts is builtin variable in ansible
