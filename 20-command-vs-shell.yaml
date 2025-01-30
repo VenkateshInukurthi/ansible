@@ -1,13 +1,44 @@
-# This is to demonestrate the command vs shell module working in Ansible.
+# This is to demonstrate the command vs shell module working in Ansible.
 # Command module only executes the commands, it will not work when you have to redirect the output or use pipes in a single input
-# On the contrary shell module work on theseareas
+# On the contrary, shell module works on these areas
 - name: Command vs shell
   hosts: local
   connection: local
   tasks:
-    - name: ansible command module
-      ansible.builtin.command: ls -ltr > /tmp/output.txt # Fails
+    - name: Using ansible command module (will fail due to redirection)
+      ansible.builtin.command: ls -ltr > /tmp/output.txt
       ignore_errors: yes
-    - name: ansible command module
+
+    - name: Using ansible shell module (works with redirection)
       ansible.builtin.shell: ls -ltr > /tmp/output.txt
-      
+
+    - name: Using ansible command module to list files
+      ansible.builtin.command: ls -ltr
+      register: command_output
+    - name: Print command module output
+      ansible.builtin.debug:
+        msg: "{{ command_output.stdout }}"
+
+    - name: Using ansible shell module with pipe
+      ansible.builtin.shell: cat /etc/passwd | grep root
+      register: shell_output
+    - name: Print shell module output
+      ansible.builtin.debug:
+        msg: "{{ shell_output.stdout }}"
+
+    - name: Using ansible command module with arguments
+      ansible.builtin.command:
+        cmd: "{{ ansible_playbook_python }} -m this"
+      register: command_with_args_output
+    - name: Print command module with args output
+      ansible.builtin.debug:
+        msg: "{{ command_with_args_output.stdout }}"
+
+    - name: Using ansible shell module to set an environment variable
+      ansible.builtin.shell: |
+        export MY_VAR="Hello"
+        echo $MY_VAR
+      register: shell_env_output
+    - name: Print shell module environment variable output
+      ansible.builtin.debug:
+        msg: "{{ shell_env_output.stdout }}"
