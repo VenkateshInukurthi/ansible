@@ -7,6 +7,12 @@
     prompt: Please enter the number you are trying to verify
     private: false
   tasks:
+    - name: Validate the input is an integer
+      ansible.builtin.assert:
+        that:
+          - number is match("^[0-9]+$")
+        fail_msg: "The input {{ Number }} is not a valid integer."
+
     - name: Print the number if less than 10
       ansible.builtin.debug:
         msg: "Given number {{ Number }} is less than 10"
