@@ -1,0 +1,13 @@
+# This is to demonestrate the command vs shell module working in Ansible.
+# Command module only executes the commands, it will not work when you have to redirect the output or use pipes in a single input
+# On the contrary shell module work on theseareas
+- name: Command vs shell
+  hosts: local
+  connection: local
+  tasks:
+    - name: ansible command module
+      ansible.builtin.command: ls -ltr > /tmp/output.txt # Fails
+      ignore_errors: yes
+    - name: ansible command module
+      ansible.builtin.shell: ls -ltr > /tmp/output.txt
+      
