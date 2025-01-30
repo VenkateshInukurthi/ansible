@@ -17,3 +17,5 @@
       when: USER.rc != 0
 
       #fatal: [54.172.85.12]: FAILED! => {"changed": true, "cmd": ["id", "expense"], "delta": "0:00:00.007128", "end": "2025-01-30 03:05:50.345837", "msg": "non-zero return code", "rc": 1, "start": "2025-01-30 03:05:50.338709", "stderr": "id: ‘expense’: no such user", "stderr_lines": ["id: ‘expense’: no such user"], "stdout": "", "stdout_lines": []}
+
+      # "msg": "User info: {'changed': True, 'stdout': 'uid=1002(expense) gid=1002(expense) groups=1002(expense)', 'stderr': '', 'rc': 0, 'cmd': ['id', 'expense'], 'start': '2025-01-30 03:13:26.312160', 'end': '2025-01-30 03:13:26.318640', 'delta': '0:00:00.006480', 'msg': '', 'stdout_lines': ['uid=1002(expense) gid=1002(expense) groups=1002(expense)'], 'stderr_lines': [], 'failed': False}"
