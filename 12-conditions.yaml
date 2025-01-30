@@ -10,9 +10,12 @@
     - name: Print the number if less than 10
       ansible.builtin.debug:
         msg: "Given number {{ Number }} is less than 10"
-      when: Number < 10
+      when: Number | int < 10
 
     - name: Print the number of it is greater than or equal to 10
       ansible.builtin.debug:
         msg: "Given number {{ Number }} is greater than or equal to 10"
-      when: Number >= 10
+      when: Number | int >= 10
+
+      # Failed with the error because by default data entered through prompt is considered as string and you cannot compare it with Int.
+      # Add the filter to convert the data type to int to resolve the issue.
