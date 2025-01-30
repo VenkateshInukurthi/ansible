@@ -25,3 +25,107 @@
 
       # Failed with the error because by default data entered through prompt is considered as string and you cannot compare it with Int.
       # Add the filter to convert the data type to int to resolve the issue.
+
+      # Some more exaples of assert module as below.
+
+### Example 1: Checking a Variable Value
+
+#This example checks if a variable `my_var` is equal to a specific value.
+
+
+- name: Example of assert module
+  hosts: localhost
+  connection: local
+  vars:
+    my_var: "expected_value"
+  tasks:
+    - name: Assert that my_var is equal to 'expected_value'
+      ansible.builtin.assert:
+        that:
+          - my_var == "expected_value"
+        fail_msg: "my_var is not equal to 'expected_value'. It is {{ my_var }}."
+        success_msg: "my_var is correctly set to 'expected_value'."
+
+
+### Example 2: Checking Multiple Conditions
+
+#This example checks multiple conditions such as the value of a variable and if a file exists.
+
+- name: Example of assert module with multiple conditions
+  hosts: localhost
+  connection: local
+  vars:
+    my_var: 42
+    my_file: "/path/to/file"
+  tasks:
+    - name: Assert multiple conditions
+      ansible.builtin.assert:
+        that:
+          - my_var > 40
+          - my_var < 50
+          - ansible.builtin.stat(path=my_file).stat.exists
+        fail_msg: "One or more conditions are not met. my_var: {{ my_var }}, my_file exists: {{ ansible_builtin_stat(path=my_file).stat.exists }}"
+        success_msg: "All conditions are met. my_var: {{ my_var }}, my_file exists: {{ ansible_builtin_stat(path=my_file).stat.exists }}"
+
+
+### Example 3: Checking the Output of a Command
+
+#This example checks if the output of a command contains a specific string.
+
+- name: Example of assert module with command output
+  hosts: localhost
+  connection: local
+  tasks:
+    - name: Run a command and save the output
+      ansible.builtin.command: "echo 'Hello, World!'"
+      register: command_output
+
+    - name: Assert that the command output contains 'Hello'
+      ansible.builtin.assert:
+        that:
+          - "'Hello' in command_output.stdout"
+        fail_msg: "The command output does not contain 'Hello'."
+        success_msg: "The command output contains 'Hello'."
+
+
+### Example 4: Checking a List Contains Specific Items
+
+# This example checks if a list contains specific items.
+
+- name: Example of assert module with list items
+  hosts: localhost
+  connection: local
+  vars:
+    my_list:
+      - item1
+      - item2
+      - item3
+  tasks:
+    - name: Assert that my_list contains 'item1' and 'item2'
+      ansible.builtin.assert:
+        that:
+          - "'item1' in my_list"
+          - "'item2' in my_list"
+        fail_msg: "my_list does not contain 'item1' or 'item2'."
+        success_msg: "my_list contains 'item1' and 'item2'."
+
+
+### Example 5: Checking a Dictionary Key-Value Pair
+
+# This example checks if a dictionary contains a specific key-value pair.
+
+- name: Example of assert module with dictionary key-value pair
+  hosts: localhost
+  connection: local
+  vars:
+    my_dict:
+      key1: value1
+      key2: value2
+  tasks:
+    - name: Assert that my_dict contains 'key1' with value 'value1'
+      ansible.builtin.assert:
+        that:
+          - "my_dict.key1 == 'value1'"
+        fail_msg: "my_dict does not contain 'key1' with value 'value1'."
+        success_msg: "my_dict contains 'key1' with value 'value1'."
+
