@@ -1,0 +1,9 @@
+# Install nginx on the ansible facts
+- name: Install nginx based on the ansible facts
+  hosts: web
+  become: yes
+  gather_facts: yes
+  tasks:
+    - name: Gather facts and print stats
+      ansible.builtin.debug:
+        msg: {{ ansible_facts }}
