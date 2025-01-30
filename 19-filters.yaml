@@ -1,0 +1,18 @@
+# Testing the filters in Ansible
+- name: Demo on filters or functions in linux
+  hosts: local
+  connection: local
+  tasks:
+    - name: print the default variables
+      ansible.builtin.debug:
+        msg: "Hello, I am learning {{ Course | default('Ansible') }}"
+    - name: Convert to upper case
+      vars:
+        - Grretings: "Hello Venkatesh"
+      ansible.builtin.debug:
+        msg: "{{ Greetings | upper }}"
+    - name: Convert to upper lower
+      vars:
+        - Grretings: "Hello Venkatesh"
+      ansible.builtin.debug:
+        msg: "{{ Greetings | lower }}"
