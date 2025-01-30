@@ -1,0 +1,33 @@
+- name: Print gather facts variables
+  hosts: web
+  become: yes
+  gather_facts: yes  # Ensure facts are gathered
+  tasks:
+    - name: Print all gathered facts
+      ansible.builtin.debug:
+        msg: "{{ ansible_facts | to_nice_json }}"  # Converts facts to JSON for better readability
+
+    - name: Ensure ansible_facts is available
+      ansible.builtin.fail:
+        msg: "ansible_facts is not available!"
+      when: ansible_facts is not defined or ansible_facts | length == 0
+
+    - name: Print specific fact - Operating System
+      ansible.builtin.debug:
+        msg: "Operating System: {{ ansible_facts.ansible_os_family | default('N/A') }}"
+
+    - name: Print specific fact - Hostname
+      ansible.builtin.debug:
+        msg: "Hostname: {{ ansible_facts.ansible_hostname | default('N/A') }}"
+
+    - name: Print specific fact - IP Address
+      ansible.builtin.debug:
+        msg: "IP Address: {{ ansible_facts.ansible_default_ipv4.address | default('N/A') }}"
+
+    - name: Print specific fact - Total Memory
+      ansible.builtin.debug:
+        msg: "Total Memory: {{ ansible_facts.ansible_memtotal_mb | default('N/A') }} MB"
+
+    - name: Print specific fact - Number of CPUs
+      ansible.builtin.debug:
+        msg: "Number of CPUs: {{ ansible_facts.ansible_processor_vcpus | default('N/A') }}"
