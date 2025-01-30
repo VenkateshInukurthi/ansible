@@ -1,4 +1,4 @@
-# Install nginx on the ansible facts
+# Install nginx based on the ansible facts
 - name: Install nginx based on the ansible facts
   hosts: web
   become: yes
@@ -8,14 +8,20 @@
       ansible.builtin.debug:
         msg: "{{ ansible_facts }}"
 
-    - name: Install nginx if the the OS is RedHat
+    - name: Install nginx on RedHat-based systems
       ansible.builtin.dnf:
         name: nginx
         state: present
       when: ansible_os_family == "RedHat"
 
-    - name: Install nginx if the os familt is Ubuntu
+    - name: Install nginx on Debian-based systems
       ansible.builtin.apt:
         name: nginx
         state: present
       when: ansible_os_family == "Debian"
+
+    - name: Ensure nginx is running
+      ansible.builtin.service:
+        name: nginx
+        state: started
+        enabled: true
