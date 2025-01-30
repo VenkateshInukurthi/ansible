@@ -29,9 +29,11 @@
         msg: |
           Hi, I am learning {{ course }}.
           Duration is {{ duration }} hours.
-          Topics covered as part of this course: {{ topics }}.
+          Topics covered as part of this course:
+            - {{ topics | join("\n            - ") }}
           This is a live training: {{ live }}.
-          Tools used as part of this training: {{ tools }}
+          Tools used as part of this training:
             - CI Tool: {{ tools.ci }}
             - CD Tool: {{ tools.cd }}
-            - Cloud Services: {{ tools.cloud.aws | join(', ') }}
+            - Cloud Services: 
+              - {{ tools.cloud.aws | join("\n              - ") }}
