@@ -1,11 +1,11 @@
-# This play book is to print data types information in Ansible
-- name: DevOps course information
+# This playbook is to print data types information in Ansible
+- name: DevOps Course Information
   hosts: local
   connection: local
   vars:
-    Course: "DevOps with AWS" # String
-    Duration: 120 # Number
-    Topics: # List
+    course: "DevOps with AWS"  # String
+    duration: 120  # Number (in hours)
+    topics:  # List of topics covered
       - Linux
       - Shell
       - Ansible
@@ -14,15 +14,24 @@
       - Kubernetes
       - Git
       - Jenkins
-    live: true # Boolean
-    tools:
+    live: true  # Boolean indicating if the training is live
+    tools:  # Dictionary of tools used
       ci: Jenkins
       cd: Ansible
-      Cloud:
-        AWS:
-        - IAM
-        - S3
+      cloud:
+        aws:
+          - IAM
+          - S3
+
   tasks:
     - name: Print the course information
       ansible.builtin.debug:
-        msg: "Hi, I am learning {{ Course }}, Duration is {{ Duration }}. Topics covered as part of this course {{ Topics }}. This is a live training: {{ live }}. Tools used as part of this training {{ tools }}"
+        msg: |
+          Hi, I am learning {{ course }}.
+          Duration is {{ duration }} hours.
+          Topics covered as part of this course: {{ topics }}.
+          This is a live training: {{ live }}.
+          Tools used as part of this training: {{ tools }}
+            - CI Tool: {{ tools.ci }}
+            - CD Tool: {{ tools.cd }}
+            - Cloud Services: {{ tools.cloud.aws | join(', ') }}
