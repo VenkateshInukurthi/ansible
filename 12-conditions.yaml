@@ -1,0 +1,18 @@
+# This is to check the number is greater than or less than in ansible using conditions.
+- name: Check if the given number is greater than or less than 10
+  hosts: local
+  connection: local
+  vars_prompt:
+    name: Number
+    prompt: Please enter the number you are trying to verify
+    private: false
+  tasks:
+    - name: Print the number if less than 10
+      ansible.builtin.debug:
+        msg: "Given number {{ Number }} is less than 10"
+      when: Number < 10
+
+    - name: Print the number of it is greater than or equal to 10
+      ansible.builtin.debug:
+        msg: "Given number {{ Number }} is greater than or equal to 10"
+      when: Number >= 10
