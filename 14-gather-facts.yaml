@@ -1,8 +1,38 @@
 # Playbook to demonestrate how gather facts works
-- name: Print gather facts variable
+#- name: Print gather facts variable
+#  hosts: web
+#  become: yes
+#  tasks:
+#    - name: print gather facts
+#      ansible.builtin.debug:
+#        msg: "{{ ansible_facts }}" # ansible_facts is builtin variable in ansible
+
+# Playbook to demonstrate how gather facts works
+- name: Print gather facts variables
   hosts: web
   become: yes
+  gather_facts: yes  # Ensure facts are gathered
   tasks:
-    - name: print gather facts
+    - name: Print all gathered facts
       ansible.builtin.debug:
-        msg: "{{ ansible_facts }}" # ansible_facts is builtin variable in ansible
+        msg: "{{ ansible_facts }}"  # ansible_facts is a built-in variable in Ansible
+
+    - name: Print specific fact - Operating System
+      ansible.builtin.debug:
+        msg: "Operating System: {{ ansible_facts['ansible_distribution'] }} {{ ansible_facts['ansible_distribution_version'] }}"
+
+    - name: Print specific fact - Hostname
+      ansible.builtin.debug:
+        msg: "Hostname: {{ ansible_facts['ansible_hostname'] }}"
+
+    - name: Print specific fact - IP Address
+      ansible.builtin.debug:
+        msg: "IP Address: {{ ansible_facts['ansible_default_ipv4']['address'] }}"
+
+    - name: Print specific fact - Total Memory
+      ansible.builtin.debug:
+        msg: "Total Memory: {{ ansible_facts['ansible_memtotal_mb'] }} MB"
+
+    - name: Print specific fact - Number of CPUs
+      ansible.builtin.debug:
+        msg: "Number of CPUs: {{ ansible_facts['ansible_processor_vcpus'] }}"
