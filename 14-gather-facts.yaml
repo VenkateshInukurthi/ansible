@@ -27,7 +27,7 @@
 
     - name: Print specific fact - IP Address
       ansible.builtin.debug:
-        msg: "IP Address: {{ ansible_default_ipv4['address }}"
+        msg: "IP Address: {{ ansible_default_ipv4.address }}"
 
     - name: Print specific fact - Total Memory
       ansible.builtin.debug:
