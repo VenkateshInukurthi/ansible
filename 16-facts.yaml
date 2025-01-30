@@ -5,7 +5,7 @@
   tasks:
     - name: Print all gathered facts
       ansible.builtin.debug:
-        msg: "{{ ansible_facts | to_nice_json }}"  # Converts facts to JSON for better readability
+        msg: "{{ ansible_facts }}"  # Converts facts to JSON for better readability
 
     - name: Ensure ansible_facts is available
       ansible.builtin.fail:
@@ -14,20 +14,20 @@
 
     - name: Print specific fact - Operating System
       ansible.builtin.debug:
-        msg: "Operating System: {{ ansible_facts.ansible_os_family | default('N/A') }}"
+        msg: "Operating System: {{ ansible_os_family | default('N/A') }}"
 
     - name: Print specific fact - Hostname
       ansible.builtin.debug:
-        msg: "Hostname: {{ ansible_facts.ansible_hostname | default('N/A') }}"
+        msg: "Hostname: {{ ansible_hostname | default('N/A') }}"
 
     - name: Print specific fact - IP Address
       ansible.builtin.debug:
-        msg: "IP Address: {{ ansible_facts.ansible_default_ipv4.address | default('N/A') }}"
+        msg: "IP Address: {{ ansible_default_ipv4.address | default('N/A') }}"
 
     - name: Print specific fact - Total Memory
       ansible.builtin.debug:
-        msg: "Total Memory: {{ ansible_facts.ansible_memtotal_mb | default('N/A') }} MB"
+        msg: "Total Memory: {{ ansible_memtotal_mb | default('N/A') }} MB"
 
     - name: Print specific fact - Number of CPUs
       ansible.builtin.debug:
-        msg: "Number of CPUs: {{ ansible_facts.ansible_processor_vcpus | default('N/A') }}"
+        msg: "Number of CPUs: {{ ansible_processor_vcpus | default('N/A') }}"
