@@ -1,0 +1,9 @@
+# This is to test conditions in real time, Create the user if not exist
+- name: Create user
+  host: web
+  become: yes
+  tasks:
+    - name: Check the user exists or not
+      ansible.builtin.command: id expense
+      register: USER # Here USER is a variable that registers the previous commands output.
+      ignore_errors: yes
