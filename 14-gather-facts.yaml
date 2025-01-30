@@ -19,7 +19,8 @@
 
     - name: Print specific fact - Operating System
       ansible.builtin.debug:
-        msg: "Operating System: {{ ansible_facts.ansible_distribution }} {{ ansible_facts.ansible_distribution_version }}"
+        #msg: "Operating System: {{ ansible_facts['ansible_distribution'] }} {{ ansible_facts['ansible_distribution_version'] }}"
+        msg: "Operating System: {{ ansible_facts['ansible_os_family'] }} " #{{ ansible_facts.ansible_distribution_version }}"
 
     - name: Print specific fact - Hostname
       ansible.builtin.debug:
