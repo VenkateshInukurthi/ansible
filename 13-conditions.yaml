@@ -7,3 +7,9 @@
       ansible.builtin.command: id expense
       register: USER # Here USER is a variable that registers the previous commands output.
       ignore_errors: yes
+
+#fatal: [54.172.85.12]: FAILED! => {"changed": true, "cmd": ["id", "expense"], "delta": "0:00:00.007128", "end": "2025-01-30 03:05:50.345837", "msg": "non-zero return code", "rc": 1, "start": "2025-01-30 03:05:50.338709", "stderr": "id: ‘expense’: no such user", "stderr_lines": ["id: ‘expense’: no such user"], "stdout": "", "stdout_lines": []}
+
+    - name: Print the user information
+      ansible.builtin.debug:
+        msg: "User info: {{ USER }}"
